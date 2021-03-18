@@ -1,6 +1,5 @@
-st=input("enter the string:")
-c=0
-for i in range(0,len(st)):
-    if(st[i]!=' '):
-        c=c+1
-print("count=",c)
+
+# Count the number of charecters in a string
+
+str = "samuel jazz john"
+print("The no of charecters in the string is:", len(str))
