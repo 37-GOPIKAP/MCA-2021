@@ -1,0 +1,160 @@
+calender.html
+
+<html lang="en">
+
+<head>
+    <title>Calender</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="selection">
+        <table class="tabselection" cellspacing="10" width="60%" align="center">
+            <caption id="cap"></caption>
+            <tbody>
+                <tr class="selrow">
+                    <td class="selcol" colspan="2" ><input id="year_get" type="number" placeholder="year"> </td>
+                </tr>
+                <tr>
+                    <td class="selcol" colspan="2" ><input id="month_get" type="number" placeholder="month"> </td>
+                </tr>
+                <tr class="selrow">
+                    <td colspan="2" class="selcol" ><input onclick="generate()" type="button" id="subtn"
+                            value="Generate Calender"> 
+                    <input type="reset" value="reset" id="resetbtn"
+                            onclick="location.reload();"> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="content"> </div>
+</body>
+
+</html>
+
+script.js
+
+function generate() {
+    var init_content = "<table BORDER=1 id='calender'><tr><th>SUN</th><th>MON</th><th>TUE</th><th>WED</th><th>THU</th><th>FRI</th><th>SAT</th></tr><tr>"
+    var year_get = document.getElementById("year_get").value;
+    var month_get = document.getElementById("month_get").value;
+    month_get -= 1;
+    switch (month_get) {
+        case 0: init_content += "<caption><h1>JANUARY<h1></caption>";
+            break;
+        case 1: init_content += "<caption><h1>FEBRUARY<h1></caption>";
+            break;
+        case 2: init_content += "<caption><h1>MARCH<h1></caption>";
+            break;
+        case 3: init_content += "<caption><h1>APRIL<h1></caption>";
+            break;
+        case 4: init_content += "<caption><h1>MAY<h1></caption>";
+            break;
+        case 5: init_content += "<caption><h1>JUNE<h1></caption>";
+            break;
+        case 6: init_content += "<caption><h1>JULY<h1></caption>";
+            break;
+        case 7: init_content += "<caption><h1>AUGUST<h1></caption>";
+            break;
+        case 8: init_content += "<caption><h1>SEPTEMBER<h1></caption>";
+            break;
+        case 9: init_content += "<caption><h1>OBCTOBAR<h1></caption>";
+            break;
+        case 10: init_content += "<caption><h1>NOVEMBER<h1></caption>";
+            break;
+        case 11: init_content += "<caption><h1>DECEMBER<h1></caption>";
+            break;
+    }
+
+    var date = new Date(year_get, month_get);
+    var day = date.getDay();
+    for (var i = 0; i < day; i++) {
+        init_content += "<td></td>";
+    }
+    while (date.getMonth() == month_get) {
+        init_content += "<td>" + date.getDate() + "</td>";
+        if (date.getDay() % 7 == 6) {
+            init_content += "</tr><tr>";
+        }
+        date.setDate(date.getDate() + 1);
+    }
+
+    while (date.getDay() % 7 != 6 && date.getDay() % 7 != 0) {
+        init_content += "<td></td>";
+        date.setDate(date.getDate() + 1);
+    }
+
+    if (date.getDay() % 7 > 0) {
+        init_content += "<td></td></tr>";
+    }
+
+    init_content += "</table>"
+    document.getElementById("content").innerHTML = init_content;
+}
+      
+      
+  style.css
+      
+      .selection {
+    text-align: center;
+    margin-bottom: 2em;
+    background-color:rgb(226, 152, 152);
+    width: 100%;   
+}
+#year_get,#month_get{
+    padding:5px;
+    width:40%;
+    margin-top: 1em;
+}
+input{
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1em;
+}
+.tabselection {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+table{
+   padding: 5px;
+}
+tr{
+   
+}
+.selrow{
+ border: none;
+ margin-top: 1em;
+}
+td,th{
+   padding: 10px;
+   border: 1px solid black;
+}
+.selcol{
+padding:0px;
+ border: none;
+text-align: center;
+}
+#calender{
+   border-collapse: collapse;
+   margin-left: auto;
+    margin-right: auto;
+}
+#resetbtn{
+background-color:green;
+   border: none;
+   color: white;
+   width:5em;
+   padding: .6em;
+   border-radius: 5px;
+}
+#subtn{
+   background-color:green;
+   border: none;
+   color: white;
+   width:10em;
+   padding:.6em;
+   border-radius: 5px;
+}
