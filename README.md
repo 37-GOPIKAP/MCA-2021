@@ -1,1 +1,1 @@
-# MCA-2021
+This repository (MCA-2021) contains all the lab activities in various subjects such as python programming ,web programming and advanced data structures that I finished during my first semester in MCA programme .
